@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, Platform } from "react-native";
+import { Text, View, StyleSheet, Platform, Image } from "react-native";
 
 export default class Header extends Component {
   constructor(props) {
@@ -14,11 +14,13 @@ export default class Header extends Component {
   };
 
   render() {
-    let display = this.state.isLoggedIn
-      ? "Mohammad Ahmadi"
-      : this.props.message;
+    let display = this.state.isLoggedIn ? "Mohammad" : this.props.message;
     return (
       <View style={styles.headStyle}>
+        <Image
+          style={styles.logoStyle}
+          source={require("./img/Globo_logo_REV.png")}
+        />
         <Text style={styles.headText} onPress={this.toggleUser}>
           {display}
         </Text>
@@ -29,13 +31,14 @@ export default class Header extends Component {
 
 const styles = StyleSheet.create({
   headText: {
-    alignSelf: "flex-start",
-    paddingTop: 20,
-    paddingTop: 20,
+    paddingRight: 0,
     fontSize: 20,
-    color: "#ffffff"
+    color: "#ffffff",
+    flex: 1
   },
   headStyle: {
+    paddingTop: 30,
+    paddingRight: 10,
     ...Platform.select({
       android: {
         backgroundColor: "green"
@@ -44,6 +47,12 @@ const styles = StyleSheet.create({
         backgroundColor: "blue"
       }
     }),
-    flex: 1
+    flex: 1,
+    flexDirection: "row"
+  },
+  logoStyle: {
+    flex: 1,
+    height: undefined,
+    width: undefined
   }
 });
